@@ -23,6 +23,7 @@
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"
     ></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
     <!-- 구글폰트 -->
     <link
@@ -36,26 +37,76 @@
     <meta property="og:image" content=""/>
     <!-- style -->
     <style>
-        body {
+        .main-img {
+            height: 200px;
             width: 100%;
-            background-color: red;
-            position: relative;
+            background-color: cadetblue;
+            text-align: center;
+            line-height: 500px;
+
         }
 
         .wrap {
             text-align: center;
             background-color: white;
-            width: 768px;
+            width: 400px;
             height: 100vh;
             margin: auto;
         }
     </style>
     <script>
+        function login_in() {
+            let email = $("#email-input").val()
+            let password = $("#password-input").val()
+
+            if (email == "") {
+                $("#help-id-login").text("아이디를 입력해주세요.")
+                $("#email-input").focus()
+                return;
+            } else {
+                $("#help-id-login").text("")
+            }
+
+            if (password == "") {
+                $("#help-password-login").text("비밀번호를 입력해주세요.")
+                $("#password-input").focus()
+                return;
+            } else {
+                $("#help-password-login").text("")
+            }
+            $.ajax({
+                type: "POST",
+                url: "/api/login",
+                data: {
+                    email_give: email,
+                    password_give: password
+                },
+                success: function (response) {
+                    if (response['result'] == 'success') {
+                        console.log(response['token'])
+                        $.cookie('mytoken', response['token'], {path:'/'});
+                        window.location.replace("/")
+
+                    } else {
+                        window.location.reload()
+                        alert(response['msg'])
+                    }
+                }
+            });
+        }
+
 
     </script>
 </head>
 
 <body>
+
+<div class="main-img">
+
+        <div class="Tasty Seoul"> <h1>Tasty Seoul</h1> </div>
+    </div>
+
+
 <div>
     <div class="background">
         <div class="wrap">
@@ -70,7 +121,10 @@
                     <label for="password-input" class="form-label">비밀번호</label>
                     <input type="password" class="form-control" id="password-input">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" onclick="login_in()">
+                                로그인
+                            </button>
+
             </form>
         </div>
     </div>

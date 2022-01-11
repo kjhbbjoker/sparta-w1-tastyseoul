@@ -36,39 +36,48 @@
     <meta property="og:image" content=""/>
     <!-- style -->
     <style>
-        body {
+
+        .main-img {
+            height: 200px;
             width: 100%;
-            background-color: red;
-            position: relative;
+            background-color: cadetblue;
+            text-align: center;
         }
+
 
         .wrap {
             text-align: center;
             background-color: white;
-            width: 768px;
+            width: 400px;
             height: 100vh;
             margin: auto;
         }
+
     </style>
     <script>
-            function register() {
-                let email = $("#email-input").val()
-                let password = $("#password-input").val()
-                let nick = $("#nick-input").val()
-                $.ajax({
-                    type: "POST",
-                    url: "/api/register",
-                    data: {email_give:email, password_give:password, nick_give:nick},
-                    success: function (response) { // 성공하면
-                        alert(response["msg"]);
-                        window.location.reload()
-                    }
-                })
-            }
+        function register() {
+            let email = $("#email-input").val()
+            let password = $("#password-input").val()
+            let nick = $("#nick-input").val()
+            $.ajax({
+                type: "POST",
+                url: "/api/register",
+                data: {email_give: email, password_give: password, nick_give: nick},
+                success: function (response) { // 성공하면
+                    alert(response["msg"]);
+                    window.location.reload()
+                }
+            })
+        }
     </script>
 </head>
 
 <body>
+
+<div class="main-img">
+
+    <h1>Tasty Seoul</h1>
+</div>
 <div>
     <div class="background">
         <div class="wrap">
@@ -85,7 +94,10 @@
                         <label for="password-input" class="form-label">비밀번호</label>
                         <input type="password" class="form-control" id="password-input">
                     </div>
-                    <button type="submit" class="btn btn-primary" onclick="register()">Submit</button>
+                        <div class=" button"></div>
+                    <button type="submit" class="btn btn-primary" onclick="register()">회원 가입</button>
+                  </div>
+
             </form>
         </div>
     </div>
