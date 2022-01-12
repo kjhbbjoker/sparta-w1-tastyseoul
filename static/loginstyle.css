@@ -1,0 +1,30 @@
+        .Tasty_Seoul {
+            padding-bottom: 1rem;
+            margin: auto;
+
+
+        }
+
+        .body {
+            background-color: aquamarine;
+        }
+
+        .navbar-item{
+            margin-left: 10px;
+            height: 5px
+
+        }
+
+        .logoText{
+            font-family: 'Do Hyeon', sans-serif;
+            text-align : center;
+            font-size: larger;
+            height: 35px;
+
+        }
+
+        .box{
+            width: 320px;
+            margin:auto;
+
+        }
